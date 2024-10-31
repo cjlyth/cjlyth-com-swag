@@ -16,4 +16,5 @@ jobs:
           ls -lsa
           echo "Build by @${{ github.actor }}."
           docker compose build
+          echo "Build done."
 ...
