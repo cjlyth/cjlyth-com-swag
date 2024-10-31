@@ -8,14 +8,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+      - name: Authenticate with AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+            aws-region: ${{ vars.AWS_REGION }}
+            role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+            role-skip-session-tagging: true
       - name: Build notice
         run: |
           ls -lsa
-          docker compose build
-          docker images
+          aws s3 ls
           echo "Build by @${{ github.actor }}."
