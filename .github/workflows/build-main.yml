@@ -17,4 +17,5 @@ jobs:
         run: |
           ls -lsa
           docker compose build
+          docker images
           echo "Build by @${{ github.actor }}."
